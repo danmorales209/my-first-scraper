@@ -20,8 +20,8 @@ app.use(express.json());
 // Make public a static folder
 app.use(express.static("public"));
 
-require("./routes/api.js")(app);
-
+//routes
+require("./routes/html.js")(app);
 
 app.listen(PORT, function () {
     console.log("App running on port " + PORT + "!");
