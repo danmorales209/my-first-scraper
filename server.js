@@ -9,8 +9,6 @@ const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlin
 
 mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
 
-const db = require("./models");
-
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
@@ -22,6 +20,7 @@ app.use(express.static("public"));
 
 //routes
 require("./routes/html.js")(app);
+require("./routes/api.js")(app);
 
 app.listen(PORT, function () {
     console.log("App running on port " + PORT + "!");
