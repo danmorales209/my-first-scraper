@@ -1,25 +1,24 @@
-<nav class="navbar bg-success">
-    <a class="navbar-brand text-dark" href="#">Welcome to This Stupid Page</a>
-    <button id="scrape-button" class= "btn nav-item btn-dark text-light">Scrape something bruh</button>
-    <button id="clear-button" class= "btn nav-item btn-light text-dark">Un-scrape</button>
+<div class="jumbotron-fluid bg-warning py-4">
+    <h1 class="display-3 text-dark text-center">SCRAPE-O-MATIC</h1>
+</div>
+<nav class="navbar bg-success flex-row justify-content-center d-flex">
+
+    <button id="scrape-button" class="btn nav-item btn-dark text-light d-flex mx-1 ">Scrape something bruh</button>
+    <button id="clear-button" class="btn nav-item btn-light text-dark d-flex mx-1">Un-scrape</button>
 
 </nav>
-<div class="jumbotron-fluid bg-warning py-4">
-    <h1 class = "display-3 text-dark text-center">SCRAPE-O-MATIC</h1>
-</div>
 <div class="container">
-    <div class ="row">
-        <div class="col-12">
-            {{#each article}}
-            <div class="card">
+    <div class="row">
+        {{#each article}}
+        <div class="col-md-4 col-12 mx-md-auto m-1">
+            <div class="card d-flex">
                 <div class="card-body">
-                    <h5 class="card-title">{{title}}</h5>
-                    <a href="{{link}}">Link</a>
-                    <button id={{_id}} class="btn btn-dark">Add Note</button>
+                    <h5 class="card-title text-center"><a href="{{url}}">{{title}}</h5></a>
+                    <button id={{_id}} class="btn btn-dark d-flex .justify-content-center mx-auto">Add Note</button>
                 </div>
             </div>
-            {{/each}}
         </div>
+        {{/each}}
     </div>
 
 </div>

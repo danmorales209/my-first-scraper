@@ -1,26 +1,15 @@
 const cheerio = require('cheerio');
+const db = require('../models');
 
 module.exports = function (app) {
   app.get("/", function (req, res) {
 
-    let article = [
-      {
-        title: "A",
-        link: "https://google.com",
-        _id: "1"
-      },
-      {
-        title: "B",
-        link: "https://google.com",
-        _id: "2"
-      },
-      {
-        title: "C",
-        link: "https://google.com",
-        _id: "3"
-      }
-    ];
+    db.Article.find({}).then(function (results) {
+      console.log(results);
+      res.render('home', { article: results });
+    }).catch(function (err) {
+      res.send("An error occurred").render('home');
+    });
 
-    res.render('home', { article });
   });
 }
