@@ -1,0 +1,9 @@
+html {
+    height: 100%;
+}
+
+body {
+    background-image: url("./img/checkers.jpg");
+    background-repeat: repeat;
+    background-size: 200px;
+}
