@@ -1,0 +1,27 @@
+<div class="container-fluid">
+    <div class="jumbotron p-2 m-0">
+        <h1 class="display-3"> {{article-title}} </h1>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p>{{summary}}</p>
+        </div>
+        <form class="col-12">
+            <div class="form-group">
+                <label for="note-input">Please Add a note Here</label>
+                <textarea class="form-control" id="note-input" rows="3"></textarea>
+            </div>
+            <button id="add-note" class="btn btn-success" data-id="{{article-id}}">Add Note</button>
+        </form>
+        {{#each note}}
+        <div class="col-md-6 col-12 m-md-3 m-1">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{title}}</h5>
+                    <p class="card-text">{{body}}</p>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

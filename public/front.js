@@ -13,7 +13,6 @@ $("#scrape-button").on("click", function (event) {
 
     }
 
-
 });
 
 $("#clear-button").on("click", function (event) {
@@ -25,9 +24,13 @@ $("#clear-button").on("click", function (event) {
         url: "/api/delete"
     }).then(function (response) {
         console.log(response);
-        window.location.reload();
-    })
+    }).then(() => window.location.reload())
 
+});
 
+$(".note-button").on("click", function (event) {
+    event.preventDefault();
 
-})
+    let url = "/article/" + $(this).data("id");
+    location.replace(url);
+});
