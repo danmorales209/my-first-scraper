@@ -17,4 +17,20 @@ $("#add-note").on("click", function (event) {
         alert(response);
     }).then(() => window.location.reload());
 
-})
+});
+
+$(".btn-danger").on("click", function (e) {
+    e.preventDefault();
+
+    $.ajax({
+            url: `/api/delete/${$(this).data("id")}`,
+            method: "DELETE",
+        })
+        .then(function (response) {
+            console.log(response);
+        })
+        .then(function () {
+            window.location.reload();
+
+        });
+});

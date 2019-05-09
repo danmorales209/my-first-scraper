@@ -4,7 +4,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <p class="bg-light p-1 border rounded" style>{{author}}</p>
+            <p class="bg-light p-1 border rounded" style>Authored by: {{author}}</p>
         </div>
         <form class="col-12">
             <div class="form-group">
@@ -21,11 +21,12 @@
     </div>
     <div class="row">
         {{#each note}}
-        <div class="col-lg-4 col-12 mx-auto">
+        <div class="col-lg-3 col-12 mx-auto my-1">
             <div class="card mx-auto text-center d-block">
                 <div class="card-body">
                     <h5 class="card-title h4">{{title}}</h5>
                     <p class="card-text">{{body}}</p>
+                    <button class="btn btn-danger" data-id="{{_id}}">Delete</button>
                 </div>
             </div>
         </div>

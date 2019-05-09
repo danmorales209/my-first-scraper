@@ -28,8 +28,13 @@ module.exports = function (app) {
           $in: noteArray
         }
       }, function (err, docs) {
+
+        if(err) {
+          return res.status(500).send("An error occurred").end();
+        }
       
         let renderData = {
+          _id: data._id,
           title: data.title,
           author: data.author,
           note: docs

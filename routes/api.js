@@ -11,13 +11,13 @@ module.exports = function (app) {
         axios.get('https://kotaku.com/tag/zelda').then(function (response) {
             const $ = cheerio.load(response.data);
 
-            
+
             let titles = $(".iKyVcF").toArray().map(element => $(element).text());
             let links = $(".sqekv3-4").toArray().map(element => $(element).children("a").attr("href"));
             let author = $(".dfSdTn").toArray().map(element => $(element).children("a").text());
-            
+
             let articleObjects = [];
-            
+
             // Build out the array of objects
             for (let i = 0; i < links.length; i++) {
                 articleObjects.push({
@@ -26,7 +26,7 @@ module.exports = function (app) {
                     author: author[i] || "No Author Given"
                 })
             }
-            
+
             db.Article.create(articleObjects)
                 .then(function (results) {
                     res.send("Scrape Complete").end();
@@ -72,9 +72,7 @@ module.exports = function (app) {
                     note: results._id
                 }
             }).then(function (upResults) {
-                console.log(upResults);
-
-                res.status(200).send("Note created").end()
+                res.status(200).send("Note created " + upResults).end();
 
             }).catch((upError) => {
                 console.error(upError);
@@ -87,4 +85,18 @@ module.exports = function (app) {
             res.status(500).send("An internal error occurred").end();
         });
     });
-}
+
+    app.delete("/api/delete/:id", function (req, res) {
+
+        console.log(req.params.id);
+
+        db.Note.deleteOne({_id:req.params.id}, function (err, data) {
+            if (err) {
+                return console.error(err);
+            }
+            console.log(data)
+            res.status(200).send("Delete succesful").end();
+        });
+
+    });
+};
