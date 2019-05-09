@@ -1,11 +1,14 @@
 const cheerio = require('cheerio');
 const db = require('../models');
+const mongoose = require('mongoose');
 
 module.exports = function (app) {
   app.get("/", function (req, res) {
 
     db.Article.find({}).then(function (results) {
-      res.render('home', { article: results });
+      res.render('home', {
+        article: results
+      });
     }).catch(function (err) {
       res.send("An error occurred").render('home');
     });
@@ -14,14 +17,31 @@ module.exports = function (app) {
 
   app.get("/article/:ID", function (req, res) {
 
-    console.log(req.params.ID);
+    db.Article.findOne({
+      _id: req.params.ID
+    }).populate("notes").then(function (data) {
 
-    db.Article.findOne({_id:req.params.ID}, function (err, data) {
+      let noteArray = data.note.map(e => mongoose.Types.ObjectId(e));
 
-      if (err) {
-        throw err;
-      }
-      res.render('article', {data})
+      db.Note.find({
+        _id: {
+          $in: noteArray
+        }
+      }, function (err, docs) {
+      
+        let renderData = {
+          title: data.title,
+          author: data.author,
+          note: docs
+        };
+
+        res.render('article', renderData);
+
+      });
+
+    }).catch(function (error) {
+      console.error(error);
+      res.end("an error occurred");
     })
   });
 }

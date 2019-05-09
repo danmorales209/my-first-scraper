@@ -1,23 +1,30 @@
-<div class="container-fluid">
-    <div class="jumbotron p-2 m-0">
-        <h1 class="display-3"> {{article-title}} </h1>
+<div class="container-fluid w-75 text-center bg-warning py-2">
+    <div class="jumbotron p-2 m-0 bg-success my-2">
+        <h1 class="display-3 my-2 text-light" style="text-shadow: 1px 1px 3px black;"> {{title}} </h1>
     </div>
     <div class="row">
         <div class="col-12">
-            <p>{{summary}}</p>
+            <p class="bg-light p-1 border rounded" style>{{author}}</p>
         </div>
         <form class="col-12">
             <div class="form-group">
-                <label for="note-input">Please Add a note Here</label>
-                <textarea class="form-control" id="note-input" rows="3"></textarea>
+                <label for="note-input">Post Title</label>
+                <input type="text" class="form-control" id="note-title" placeholder="Post Title"></input>
             </div>
-            <button id="add-note" class="btn btn-success" data-id="{{article-id}}">Add Note</button>
+            <div class="form-group">
+                <label for="note-input">Post Body</label>
+                <textarea class="form-control" id="note-body" rows="3"></textarea>
+            </div>
+            <button id="add-note" class="btn btn-success" data-id="{{_id}}">Add Note</button>
+            <button id="return" class="btn btn-primary">Return Home</button>
         </form>
+    </div>
+    <div class="row">
         {{#each note}}
-        <div class="col-md-6 col-12 m-md-3 m-1">
-            <div class="card">
+        <div class="col-lg-4 col-12 mx-auto">
+            <div class="card mx-auto text-center d-block">
                 <div class="card-body">
-                    <h5 class="card-title">{{title}}</h5>
+                    <h5 class="card-title h4">{{title}}</h5>
                     <p class="card-text">{{body}}</p>
                 </div>
             </div>
@@ -25,3 +32,5 @@
         {{/each}}
     </div>
 </div>
+<script src="../js/article.js"></script>
+<link rel="stylesheet" href="../styles/style.css" />

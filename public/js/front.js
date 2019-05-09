@@ -1,8 +1,6 @@
 $("#scrape-button").on("click", function (event) {
     event.preventDefault();
 
-    console.log($(".card").length)
-
     if ($(".card").length <= 0) {
         console.log("Starting the Scrape");
 

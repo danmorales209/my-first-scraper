@@ -16,13 +16,13 @@ const ArticleSchema = new Schema({
         required: true
     },
 
-    summary : {
+    author : {
         type: String,
         required: true
     },
 
     note: {
-        type: Schema.Types.ObjectId,
+        type: [Schema.Types.ObjectId],
         ref: "Note"
     }
 });
